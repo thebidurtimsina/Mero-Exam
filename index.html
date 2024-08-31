@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MeroExam - Comming Soon</title>
+    <script src="countdown.js" defer></script>
+    <link rel="shortcut icon" href="a-logo-for-meroexam-with-the-text-meroexam-in-bold-21Uech_jRXiStHmFpNlvXw-ZzsQGew5RN-blq4QEUIbng.jpeg" type="image/x-icon">
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="text-center justify-center">
+      <img class="w-[60%]" src="MeroExam Logo.png" alt="" /> 
+          <h1 class="text-6xl font-bold mb-14">Comming ON</h1>
+
+      <div id="display" class="text-8xl mb-4 ">00:00:00</div>
+      <div id="status" class="mt-4 text-red-500"></div>
+    </div>
+  </body>
+  <script>
+    const display = document.getElementById("display");
+    const statusMessage = document.getElementById("status");
+
+    const stopDate = new Date("January 1, 2025").getTime();
+
+    function updateCountdown() {
+      const now = Date.now();
+      const timeLeft = stopDate - now;
+
+      if (timeLeft <= 0) {
+        clearInterval(countdownInterval);
+        display.textContent = "00:00:00";
+        statusMessage.textContent = "Happy New Year 2025!";
+        return;
+      }
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      display.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    // Start the countdown automatically when the page loads
+    const countdownInterval = setInterval(updateCountdown, 1000);
+  </script>
+</html>
